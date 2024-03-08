@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import Auth from "./pages/Authurization";
+import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 
 const Routeres = () => {

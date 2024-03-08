@@ -1,8 +1,13 @@
 import { Box, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/partials/Sidebar";
+import ContentLayout from "../../layouts/ContentLayout";
+import Auth from "../Auth";
+import Dashboard from "../Dashboard";
 
 export default function Home() {
+  const [tab, setTab] = useState(0);
+
   // const styles = (theme) => ({
   //   root: {
   //     backgroundColor: "blue",
@@ -20,20 +25,27 @@ export default function Home() {
     // backgroundColor: "blue",
     // width: "85%",
     [theme.breakpoints.between("sm", "md")]: {
-      backgroundColor: "red",
-    },
-    "& .custom-content": {
-      backgroundColor: "green",
+      backgroundColor: "black",
     },
   }));
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-      <Box sx={{ backgroundColor: "blue", width: "85%" }}>content</Box>
-      <StyledBox sx={{ backgroundColor: "red", minWidth: "240px" }}>
-        <Sidebar />
+      <Box
+        sx={{
+          // backgroundColor: "blue",
+          width: "85%",
+          display: "flex",
+          justifyContent: "",
+        }}
+      >
+        {/* CONTENT LAYOUT */}
+        <ContentLayout>
+          {tab === 1 ? <Auth /> : tab === 2 ? <Dashboard /> : null}
+        </ContentLayout>
+      </Box>
+      <StyledBox sx={{ backgroundColor: "red", width: "15%" }}>
+        <Sidebar tab={tab} setTab={setTab} />
       </StyledBox>
     </Box>
   );
 }
-
-

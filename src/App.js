@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
-import "./App.css";
-import Auth from "./pages/Authurization";
+// import "./App.css";
+import Auth from "./pages/Auth";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Router from "./Router";

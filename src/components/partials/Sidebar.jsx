@@ -34,7 +34,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-export default function Sidebar() {
+export default function Sidebar({ tab, setTab }) {
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -46,7 +46,7 @@ export default function Sidebar() {
       //   direction="row"
       //   useFlexGap
       //   flexWrap="wrap"
-      sx={{ background: "#0d0e12", height: "97vh" }}
+      sx={{ background: "#0d0e12", height: "100vh" }}
     >
       <Stack
         direction="row"
@@ -157,13 +157,13 @@ export default function Sidebar() {
       </Stack>
 
       <Stack>
-        <ListItemButton sx={{ color: "#898c98"}}>
+        <ListItemButton sx={{ color: "#898c98" }}>
           <ListItemIcon>
             <SendIcon sx={{ color: "#1f202c" }} />
           </ListItemIcon>
           <ListItemText
             primary="Dashboard"
-            sx={{ fontVariant:5,fontSize:600  }}
+            sx={{ fontVariant: 5, fontSize: 600 }}
           />
         </ListItemButton>
 
@@ -188,17 +188,17 @@ export default function Sidebar() {
               id="nested-list-subheader"
               sx={{ bgcolor: "#0d0e12", color: "#888a97" }}
             >
-              CRAFTED
+              MANAGER
             </ListSubheader>
           }
         >
-          <ListItemButton>
+          <ListItemButton onClick={() => setTab(1)}>
             <ListItemIcon>
               <SendIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
             <ListItemText primary="Sent mail" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton onClick={() => setTab(2)}>
             <ListItemIcon>
               <DraftsIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
@@ -208,7 +208,7 @@ export default function Sidebar() {
             <ListItemIcon>
               <InboxIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary="Tables" />
             {open ? (
               <ExpandLess sx={{ color: "#1f202c" }} />
             ) : (
@@ -219,9 +219,34 @@ export default function Sidebar() {
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 4 }}>
                 <ListItemIcon>
-                  <StarBorder sx={{ color: "#1f202c" }} />
+                  {/* <StarBorder sx={{ color: "#1f202c" }} /> */}
+                  <Box
+                    sx={{
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "5px",
+                      bgcolor: "#1f202c",
+                    }}
+                  ></Box>
                 </ListItemIcon>
-                <ListItemText primary="Starred" />
+                <ListItemText primary="Members" />
+              </ListItemButton>
+            </List>
+
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  {/* <StarBorder sx={{ color: "#1f202c" }} /> */}
+                  <Box
+                    sx={{
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "5px",
+                      bgcolor: "#1f202c",
+                    }}
+                  ></Box>
+                </ListItemIcon>
+                <ListItemText primary="Products" />
               </ListItemButton>
             </List>
           </Collapse>
