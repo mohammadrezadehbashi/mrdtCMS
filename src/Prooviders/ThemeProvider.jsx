@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 const theme = createTheme({
   palette: {
-    primary: lime,
+    // primary: lime,
     secondary: purple,
   },
   breakpoints: {
@@ -17,6 +17,9 @@ const theme = createTheme({
       xl: 1536,
     },
   },
+  typography: {
+    fontFamily:"Rubik"
+  }
 });
 // const theme = createTheme({
 //   breakpoints: {

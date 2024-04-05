@@ -2,8 +2,14 @@ import { Box, styled } from "@mui/material";
 import React, { useState } from "react";
 import Sidebar from "../../components/partials/Sidebar";
 import ContentLayout from "../../layouts/ContentLayout";
-import Auth from "../Auth";
-import Dashboard from "../Dashboard";
+import { Outlet } from "react-router-dom";
+// import { Outlet } from "@mui/icons-material";
+// import Auth from "../Auth/Register";
+// import Dashboard from "../Dashboard";
+// import UserManagment from "../UserManagment";
+// import ProductsManagment from "../ProductsManagment";
+// import ArticlesManagment from "../ArticlesManagment";
+// import CommentsManagment from "../CommentsManagment";
 
 export default function Home() {
   const [tab, setTab] = useState(0);
@@ -24,28 +30,44 @@ export default function Home() {
     // justifyContent: "space-between",
     // backgroundColor: "blue",
     // width: "85%",
-    [theme.breakpoints.between("sm", "md")]: {
-      backgroundColor: "black",
-    },
+    // [theme.breakpoints.between("sm", "md")]: {
+    //   backgroundColor: "black",
+    // },
   }));
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Box sx={{ display: "flex", bgcolor: "black" }}>
       <Box
         sx={{
           // backgroundColor: "blue",
           width: "85%",
-          display: "flex",
-          justifyContent: "",
+          // display: "flex",
+          // justifyContent: "",
         }}
       >
         {/* CONTENT LAYOUT */}
-        <ContentLayout>
-          {tab === 1 ? <Auth /> : tab === 2 ? <Dashboard /> : null}
+        <ContentLayout tab={tab}>
+          {/* {tab === 1 ? (
+            <Auth />
+          ) : tab === 2 ? (
+            <Dashboard />
+          ) : tab === 3 ? (
+            <UserManagment />
+          ) : tab === 4 ? (
+            <ProductsManagment />
+                ) : tab === 5 ? (
+            <CommentsManagment />
+          ) : tab === 6 ? (
+            <ArticlesManagment/>
+          ) :
+            null} */}
+        <Outlet/>
         </ContentLayout>
       </Box>
-      <StyledBox sx={{ backgroundColor: "red", width: "15%" }}>
-        <Sidebar tab={tab} setTab={setTab} />
-      </StyledBox>
+      <Box>
+        <StyledBox sx={{ width: "15%", position: "fixed", right: "0px" }}>
+          <Sidebar tab={tab} setTab={setTab} />
+        </StyledBox>
+      </Box>
     </Box>
   );
 }

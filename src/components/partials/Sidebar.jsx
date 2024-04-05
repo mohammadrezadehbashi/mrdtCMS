@@ -33,6 +33,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ tab, setTab }) {
   const [open, setOpen] = React.useState(true);
@@ -46,14 +47,24 @@ export default function Sidebar({ tab, setTab }) {
       //   direction="row"
       //   useFlexGap
       //   flexWrap="wrap"
-      sx={{ background: "#0d0e12", height: "100vh" }}
+      sx={{
+        background: "#0d0e12",
+        height: "100vh",
+        border: "2px solid #23252c",
+      }}
     >
       <Stack
         direction="row"
         display={"flex"}
         alignItems={"center"}
         justifyContent={"space-between"}
-        sx={{ borderBottom: 1, borderColor: "#71758b" }}
+        sx={{
+          borderBottom: "1px dashed #71758b",
+          // borderColor: "#71758b",
+          minHeight: "65px",
+          height: "115px",
+          padding: "8px",
+        }}
       >
         <Box component={"p"} var>
           <Typography variant="h4" color={"white"}>
@@ -61,11 +72,13 @@ export default function Sidebar({ tab, setTab }) {
           </Typography>
         </Box>
         <Box>
-          <ExitToAppIcon sx={{ color: "white" }} />
+          <Link to={"/"}>
+            <ExitToAppIcon sx={{ color: "white" }} />
+          </Link>
         </Box>
       </Stack>
 
-      <Stack sx={{ borderBottom: 1, borderColor: "#71758b" }}>
+      <Stack sx={{ borderBottom: "1px dashed #71758b" }}>
         <ListItem
           sx={{
             display: "flex",
@@ -119,7 +132,7 @@ export default function Sidebar({ tab, setTab }) {
         <Divider variant="inset" component="li" />
       </Stack>
 
-      <Stack sx={{ borderBottom: 1, borderColor: "#71758b" }}>
+      <Stack sx={{ borderBottom: "1px dashed #71758b" }}>
         <FormControl
           sx={{
             m: 1,
@@ -131,10 +144,11 @@ export default function Sidebar({ tab, setTab }) {
           variant="outlined"
         >
           <InputLabel
-            sx={{ color: "#71758b" }}
+            sx={{ color: "#71758b", textAlign: "right" }}
             htmlFor="outlined-adornment-password"
+            dir="rtl"
           >
-            Password
+            جست و جو ...
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -145,7 +159,7 @@ export default function Sidebar({ tab, setTab }) {
                   aria-label="toggle password visibility"
                   // onClick={handleClickShowPassword}
                   // onMouseDown={handleMouseDownPassword}
-                  edge="end"
+                  // edge="end"
                 >
                   {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
                 </IconButton>
@@ -156,27 +170,31 @@ export default function Sidebar({ tab, setTab }) {
         </FormControl>
       </Stack>
 
-      <Stack>
-        <ListItemButton sx={{ color: "#898c98" }}>
-          <ListItemIcon>
-            <SendIcon sx={{ color: "#1f202c" }} />
-          </ListItemIcon>
-          <ListItemText
-            primary="Dashboard"
-            sx={{ fontVariant: 5, fontSize: 600 }}
-          />
-        </ListItemButton>
+      <Stack dir="rtl">
+        <Link to={"/dashboard"}>
+          <ListItemButton sx={{ color: "#898c98" }}>
+            <ListItemIcon>
+              <SendIcon sx={{ color: "#1f202c" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary="داشبورد"
+              Align="right"
+              sx={{ fontVariant: 5, fontSize: 600 }}
+            />
+          </ListItemButton>
+        </Link>
 
         <ListItemButton sx={{ color: "#898c98" }}>
           <ListItemIcon>
             <SendIcon sx={{ color: "#1f202c" }} />
           </ListItemIcon>
-          <ListItemText primary="Layout Builder" />
+          <ListItemText primary="لایه" Align="right" />
         </ListItemButton>
       </Stack>
 
       <Stack
-        sx={{ borderBottom: 1, borderColor: "#71758b", overflowY: "auto" }}
+        dir="rtl"
+        sx={{ borderBottom: "1px dashed #71758b", overflowY: "auto" }}
       >
         <List
           sx={{ width: "100%", color: "#9a9daa" }}
@@ -188,27 +206,75 @@ export default function Sidebar({ tab, setTab }) {
               id="nested-list-subheader"
               sx={{ bgcolor: "#0d0e12", color: "#888a97" }}
             >
-              MANAGER
+              مدیریت
             </ListSubheader>
           }
         >
-          <ListItemButton onClick={() => setTab(1)}>
+          <Link to={"user_manage"}>
+            <ListItemButton onClick={() => setTab(3)}>
+              <ListItemIcon>
+                <DraftsIcon sx={{ color: "#1f202c" }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="مدیریت کاربران"
+                sx={{ color: "#888a97", textAlign: "right" }}
+              />
+            </ListItemButton>
+          </Link>
+
+          <Link to={"product_manage"}>
+            <ListItemButton onClick={() => setTab(4)}>
+              <ListItemIcon>
+                <DraftsIcon sx={{ color: "#1f202c" }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="مدیریت محصولات"
+                sx={{ color: "#888a97", textAlign: "right" }}
+              />
+            </ListItemButton>
+          </Link>
+
+          <Link to={"comment_manage"}>
+            <ListItemButton onClick={() => setTab(5)}>
+              <ListItemIcon>
+                <DraftsIcon sx={{ color: "#1f202c" }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="مدیریت دیدگاه ها"
+                sx={{ color: "#888a97", textAlign: "right" }}
+              />
+            </ListItemButton>
+          </Link>
+
+          <Link to={"article_manage"}>
+            <ListItemButton onClick={() => setTab(6)}>
+              <ListItemIcon>
+                <DraftsIcon sx={{ color: "#1f202c" }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="مدیریت مقالات"
+                sx={{ color: "#888a97", textAlign: "right" }}
+              />
+            </ListItemButton>
+          </Link>
+          {/* <ListItemButton onClick={() => setTab(1)}>
             <ListItemIcon>
               <SendIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
-            <ListItemText primary="Sent mail" />
+            <ListItemText primary="Sent mail" Align="right" />
           </ListItemButton>
+
           <ListItemButton onClick={() => setTab(2)}>
             <ListItemIcon>
               <DraftsIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItemButton>
+            <ListItemText primary="Drafts" Align="right" />
+          </ListItemButton> */}
           <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <InboxIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
-            <ListItemText primary="Tables" />
+            <ListItemText primary="Tables" Align="right" />
             {open ? (
               <ExpandLess sx={{ color: "#1f202c" }} />
             ) : (
@@ -229,7 +295,7 @@ export default function Sidebar({ tab, setTab }) {
                     }}
                   ></Box>
                 </ListItemIcon>
-                <ListItemText primary="Members" />
+                <ListItemText primary="Members" Align="right" />
               </ListItemButton>
             </List>
 
@@ -246,7 +312,7 @@ export default function Sidebar({ tab, setTab }) {
                     }}
                   ></Box>
                 </ListItemIcon>
-                <ListItemText primary="Products" />
+                <ListItemText primary="Products" Align="right" />
               </ListItemButton>
             </List>
           </Collapse>
@@ -262,7 +328,7 @@ export default function Sidebar({ tab, setTab }) {
               id="nested-list-subheader"
               sx={{ bgcolor: "#0d0e12", color: "#888a97" }}
             >
-              APPS
+              برنامک
             </ListSubheader>
           }
         >
@@ -270,13 +336,10 @@ export default function Sidebar({ tab, setTab }) {
             <ListItemIcon>
               <SendIcon sx={{ color: "#1f202c" }} />
             </ListItemIcon>
-            <ListItemText primary="Chat" sx={{ color: "#888a97" }} />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <DraftsIcon sx={{ color: "#1f202c" }} />
-            </ListItemIcon>
-            <ListItemText primary="User management" sx={{ color: "#888a97" }} />
+            <ListItemText
+              primary="Chat"
+              sx={{ color: "#888a97", textAlign: "right" }}
+            />
           </ListItemButton>
         </List>
       </Stack>

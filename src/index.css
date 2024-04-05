@@ -3,3 +3,8 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
+@font-face {
+  font-family: Rubik;
+  src: url('/public/font/Rubik/static/Rubik-Light.ttf');
+}
